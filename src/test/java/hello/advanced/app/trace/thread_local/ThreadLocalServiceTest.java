@@ -1,12 +1,12 @@
 package hello.advanced.app.trace.thread_local;
 
-import hello.advanced.app.trace.thread_local.code.FieldService;
+import hello.advanced.app.trace.thread_local.code.ThreadLocalService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class FieldServiceTest {
-    private final FieldService fieldService = new FieldService();
+public class ThreadLocalServiceTest {
+    private final ThreadLocalService fieldService = new ThreadLocalService();
 
     @Test
     void field(){
@@ -20,7 +20,7 @@ public class FieldServiceTest {
         threadB.setName("thread-B");
 
         threadA.start();
-        sleep(2000);/* 100일 때는 동시성 문제가 발생한다. */
+        sleep(100);/*이제는 100일 때도 동시성 문제가 발생하지 않는다. */
         threadB.start();
 
         sleep(3000);//메인 쓰레드 종료 대기

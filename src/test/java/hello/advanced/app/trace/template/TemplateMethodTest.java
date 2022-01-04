@@ -38,6 +38,8 @@ public class TemplateMethodTest {
         log.info("resultTime={}", resultTime);
     }
 
+
+
     /* 템플릿 메서드 패턴 적용 */
     @Test
     void templateMethodV1() {
@@ -45,6 +47,25 @@ public class TemplateMethodTest {
         template1.execute();
 
         AbstractTemplate template2 = new SubClassLogic1();
+        template2.execute();
+    }
+
+    @Test
+    void templateMethodV2(){
+        AbstractTemplate template1 = new AbstractTemplate() {
+            @Override
+            protected void call() {
+                log.info("비즈니스 로직1 실행");
+            }
+        };
+
+        AbstractTemplate template2 = new AbstractTemplate() {
+            @Override
+            protected void call() {
+                log.info("비즈니스 로직2 실행");
+            }
+        };
+        template1.execute();
         template2.execute();
     }
 }
